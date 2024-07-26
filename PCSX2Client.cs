@@ -1,4 +1,5 @@
-﻿using Archipelago.PCSX2.Util;
+﻿using Archipelago.Core;
+using Archipelago.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Archipelago.PCSX2
 {
-    public class PCSX2Client
+    public class PCSX2Client : IGameClient
     {
         public bool IsConnected { get; set; }
+        public int ProcId { get; set; } = Memory.PCSX2_PROCESSID;
         public PCSX2Client()
         {
 
