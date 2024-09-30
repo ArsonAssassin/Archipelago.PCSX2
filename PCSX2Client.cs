@@ -11,18 +11,20 @@ namespace Archipelago.PCSX2
     public class PCSX2Client : IGameClient
     {
         public bool IsConnected { get; set; }
-        public int ProcId { get; set; } = Memory.PCSX2_PROCESSID;
+        public int ProcId { get; set; }
+        public string ProcessName { get; set; }
         public PCSX2Client()
         {
 
+            ProcessName = "pcsx2";
+            ProcId = Memory.PCSX2_PROCESSID;
         }
         public bool Connect()
         {
-            Console.WriteLine("Connecting to PCSX2");
-            var pid = Memory.PCSX2_PROCESSID;
-            if (pid == 0)
+            Console.WriteLine($"Connecting to {ProcessName}");
+            if (ProcId == 0)
             {
-                Console.WriteLine("PCSX2 not found.");
+                Console.WriteLine($"{ProcessName} not found.");
                 Console.WriteLine("Press any key to exit.");
                 Console.Read();
                 System.Environment.Exit(0);
